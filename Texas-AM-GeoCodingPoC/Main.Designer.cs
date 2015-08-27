@@ -38,6 +38,7 @@
             this.lblCityStateZip = new System.Windows.Forms.Label();
             this.txtResult = new System.Windows.Forms.TextBox();
             this.btnGo = new System.Windows.Forms.Button();
+            this.btnNormalizeAddress = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtAdd1
@@ -112,19 +113,30 @@
             // 
             // btnGo
             // 
-            this.btnGo.Location = new System.Drawing.Point(276, 139);
+            this.btnGo.Location = new System.Drawing.Point(188, 142);
             this.btnGo.Name = "btnGo";
             this.btnGo.Size = new System.Drawing.Size(75, 23);
             this.btnGo.TabIndex = 5;
-            this.btnGo.Text = "GO!";
+            this.btnGo.Text = "Geocode";
             this.btnGo.UseVisualStyleBackColor = true;
             this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
+            // 
+            // btnNormalizeAddress
+            // 
+            this.btnNormalizeAddress.Location = new System.Drawing.Point(276, 142);
+            this.btnNormalizeAddress.Name = "btnNormalizeAddress";
+            this.btnNormalizeAddress.Size = new System.Drawing.Size(75, 23);
+            this.btnNormalizeAddress.TabIndex = 100;
+            this.btnNormalizeAddress.Text = "Normalize";
+            this.btnNormalizeAddress.UseVisualStyleBackColor = true;
+            this.btnNormalizeAddress.Click += new System.EventHandler(this.btnNormalizeAddress_Click);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1066, 364);
+            this.Controls.Add(this.btnNormalizeAddress);
             this.Controls.Add(this.btnGo);
             this.Controls.Add(this.txtResult);
             this.Controls.Add(this.lblCityStateZip);
@@ -154,6 +166,7 @@
         private System.Windows.Forms.Label lblCityStateZip;
         private System.Windows.Forms.TextBox txtResult;
         private System.Windows.Forms.Button btnGo;
+        private System.Windows.Forms.Button btnNormalizeAddress;
     }
 }
 

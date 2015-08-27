@@ -25,16 +25,15 @@ namespace Texas_AM_GeoCodingPoC
 
         private void btnGo_Click(object sender, EventArgs e)
         {
-            string requestUrl = BuildRequestUrl(txtAdd1.Text, txtAddr2.Text, txtCity.Text, txtState.Text, txtZip.Text);
+            string requestUrl = BuildGeocodeRequestUrl(txtAdd1.Text, txtAddr2.Text, txtCity.Text, txtState.Text, txtZip.Text);
             string result = CallService(requestUrl);
-
 
             txtResult.Text = result;
         }
 
-        private string getWsUrl()
+        private string getGeocodeWsUrl()
         {
-            return ConfigurationManager.AppSettings["Texas-AM-Http-WebService-Url"];
+            return ConfigurationManager.AppSettings["Texas-AM-Http-Geocode-WebService-Url"];
         }
 
         private string getApiKey()
@@ -42,11 +41,16 @@ namespace Texas_AM_GeoCodingPoC
             return ConfigurationManager.AppSettings["Texas-AM-ApiKey"];
         }
 
+        private string getAddressNormalizationWsUrl()
+        {
+            return ConfigurationManager.AppSettings["Texas-AM-Http-AddressNormalization-WebService-Url"];
+        }
 
-        private string BuildRequestUrl(string addr1, string addr2, string city, string st, string z = null)
+
+        private string BuildGeocodeRequestUrl(string addr1, string addr2, string city, string st, string z = null)
         {
             string url = "";
-            url += getWsUrl() + "apiKey=" + getApiKey();
+            url += getGeocodeWsUrl() + "apiKey=" + getApiKey();
             url += "&version=4.01";
             url += "&streetAddress=" + addr1 + " " + addr2;
             url += "&city=" + city;
@@ -81,5 +85,27 @@ namespace Texas_AM_GeoCodingPoC
             }
         }
 
+        private void btnNormalizeAddress_Click(object sender, EventArgs e)
+        {
+            string requestUrl = BuildAddressNormalizationRequestUrl(txtAdd1.Text, txtAddr2.Text, txtCity.Text, txtState.Text, txtZip.Text);
+            string result = CallService(requestUrl);
+
+            txtResult.Text = result;
+        }
+
+        private string BuildAddressNormalizationRequestUrl(string addr1, string addr2, string city, string st, string z)
+        {
+            string url = "";
+            url += getGeocodeWsUrl() + "apiKey=" + getApiKey();
+            url += "&version=4.01";
+            url += "&streetAddress=" + addr1 + " " + addr2;
+            url += "&city=" + city;
+            url += "&state=" + st;
+            if (z != null)
+                url += "&zip=" + z; //optional
+            url += "&format=json"; //optional
+
+            return url;
+        }
     }
 }
