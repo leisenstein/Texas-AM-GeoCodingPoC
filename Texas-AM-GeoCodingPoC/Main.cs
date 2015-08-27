@@ -25,7 +25,7 @@ namespace Texas_AM_GeoCodingPoC
 
         private void btnGo_Click(object sender, EventArgs e)
         {
-            string requestUrl = BuildRequestUrl("Two Concourse Parkway", "Suite 300", "Atlanta", "GA", "30328");
+            string requestUrl = BuildRequestUrl(txtAdd1.Text, txtAddr2.Text, txtCity.Text, txtState.Text, txtZip.Text);
             string result = CallService(requestUrl);
 
 
